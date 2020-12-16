@@ -37,7 +37,7 @@ function ts_online() {
         } else {
             $response = tsQuery("clientlist?-uid");
 
-            if($response === false || $response->status->code != 0) return -1;
+            if($response === false || $response->status->code != 0) throw new Exception("Invalid response!");
         
             $clients = $response->body;
             $clients = array_filter($clients, function($client) {
@@ -47,9 +47,8 @@ function ts_online() {
             
             $online->set(count($clients))->expiresAfter(60);
             $cache->save($online);
+            return $online->get();
         }
-
-        return $online->get();
     } catch(Exception $e) {
         //var_dump($e);
         return -1;
@@ -74,7 +73,7 @@ function ts_unique() {
             {
                 $response = tsQuery("clientdblist?duration=$max&start=$i");
 
-                if($response === false || $response->status->code != 0) return -1;
+                if($response === false || $response->status->code != 0) throw new Exception("Invalid response!");
 
                 $tempClients = $response->body;
 
@@ -91,9 +90,8 @@ function ts_unique() {
 
             $uniqueAmount->set(count($unique))->expiresAfter(300);
             $cache->save($uniqueAmount);
+            return $uniqueAmount->get();
         }
-
-        return $uniqueAmount->get();
     } catch(Exception $e) {
         //var_dump($e);
         return -1;
@@ -106,20 +104,19 @@ function ts_votes() {
 
         $votesCount = $cache->getItem(VOTES);
 
-        if($votesCount->isHit()) {
+        if(false/*$votesCount->isHit()*/) {
             return $votesCount->get();
         } else {
             $response = voteQuery("clientlist");
 
-            if($response === false) return -1;
+            if($response === false) throw new Exception("Invalid response!");
         
             $votes = $response->votes;
 
             $votesCount->set($votes)->expiresAfter(300);
             $cache->save($votesCount);
+            return $votesCount->get();
         }
-
-        return $votesCount->get();
     } catch(Exception $e) {
         //var_dump($e);
         return -1;

@@ -50,7 +50,7 @@ $data = getData();
                 <a href="#lol">League of Legends system</a>!
             </h5>
 
-            <div class="row text-uppercase pb-5">
+            <div class="row text-uppercase p-5">
                 <div class="col grow">
                     <a href="ts3server://dark-gaming.eu">
                         <img src="./images/ts.png" alt="TeamSpeak" class="m-3" width="150">
