@@ -149,7 +149,7 @@ $data = getData();
         <div class="container">
             <h2 class="pt-3 font-weight-bolder">1 BOT, 100 CLIENTS</h2>
             <p class="text-light">
-                Our bots with our own-made scripts take care of almost the server,<br>
+                Our bots with our own-made scripts take care of the whole server,<br>
                 <b>music for your ears, ranking system, channel system, server's statistics..</b><br>
                 <br>
                 <i class="h5">Bots take care of everything!</i>
